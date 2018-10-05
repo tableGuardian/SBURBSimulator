@@ -95,8 +95,8 @@ class VoidyStuff extends Scene {
 				this.ectoBiologyStarted(normalDiv, newDiv);
 				this.endingPhrase(classDiv, newDiv);
 				return;
-		}else if(this.player.getStat(Stats.SANITY) < 5 && !this.player.murderMode && rand.nextDouble() > 0.9){
-			//session.logger.info("AB: flipping shit through voidy stuff");
+		}else if(this.player.getStat(Stats.SANITY) < -200 && !this.player.murderMode && rand.nextDouble() > 0.9){
+			//session.logger.info("AB: engaging murder mode through voidy stuff");
 			this.goMurderMode(normalDiv, newDiv);
 			this.endingPhrase(classDiv, newDiv);
 			return;
@@ -161,7 +161,7 @@ class VoidyStuff extends Scene {
 		//brainstorm what they are doing here, rand array.
 	}
 	void goMurderMode(Element div, Element specialDiv){
-		this.player.addStat(Stats.SANITY, -30);
+		this.player.addStat(Stats.SANITY, -300);
 		this.player.makeMurderMode();
 		appendHtml(div, " You get a bad feeling about this. ");
 		appendHtml(specialDiv, "The " + this.player.htmlTitle() + " has taken an acrobatic fucking pirouette off the handle and into a giant pile of crazy.  You almost wish you hadn't seen this. This is completely terrifying.");

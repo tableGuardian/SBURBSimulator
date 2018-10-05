@@ -18,7 +18,7 @@ class BigBadStats {
     GameEntity bigBad;
 
     BigBadStats(GameEntity this.bigBad) {
-        if(bigBad != null) {
+        if(bigBad != null && bigBad is BigBad) {
             loadBigBad(bigBad);
         }else {
             initStats();
@@ -47,7 +47,7 @@ class BigBadStats {
 
 
     void loadBigBad(GameEntity bigBad) {
-        //print("loading a big bad $bigBad, it wasn't default");
+       // print("loading a big bad $bigBad for session ${bigBad.session.session_id}}, it wasn't default, times active was ${bigBad.active ? 1 : 0};");
         this.name = bigBad.name;
         this.description = bigBad.description;
         statsMap["Times Activated"] = bigBad.active ? 1 : 0;
@@ -232,6 +232,7 @@ class BigBadSummary {
     Session session;
 
     BigBadSummary(Session this.session) {
+        //print("Making a new big bad summary for session ${this.session.session_id}");
         if(session == null) {
             defaultSession();
         }
@@ -261,6 +262,8 @@ class BigBadSummary {
     void init() {
         //List<GameEntity> npcs = session.activatedNPCS;
         List<GameEntity> npcs = session.bigBads;// for when you dont want to hide any
+        //print("sessions activated big bads are ${session.activatedBigBads}");
+        npcs.addAll(session.activatedBigBads);
         for(GameEntity g in npcs) {
             if(g is BigBad){
                 //print("TEST AB WRITING: I am initializing a big bad summary from a real session. the big bad is $g");

@@ -90,7 +90,7 @@ class  SerializableScene extends Scene {
 
       myElement = new DivElement();
       div.append(myElement);
-      myElement.setInnerHtml("$displayText");
+      myElement.setInnerHtml("$displayText",treeSanitizer: NodeTreeSanitizer.trusted,validator: new NodeValidatorBuilder()..allowElement("img"));
 
       ImageElement portrait;
 
@@ -396,7 +396,7 @@ void syncForm() {
       for(TargetConditionLiving tc in triggerConditionsLiving) {
           livingTargets = new Set<GameEntity>.from(tc.filter(new List<GameEntity>.from(livingTargets)));
           if(gameEntity.name.contains("Empress")) {
-            print("big bad is $gameEntity and scene is $name and living targets is $livingTargets");
+           // print("big bad is $gameEntity and scene is $name and living targets is $livingTargets");
           }
       }
       if(triggerConditionsLiving.isEmpty) livingTargets.clear();
